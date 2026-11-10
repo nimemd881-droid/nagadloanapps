@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লোন আবেদন - ARROMEX BOOST ZONE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        
+        body { 
+            background: #eef2f6; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.06);
+        }
+
+        /* উপরের কমলা-লাল টপ বার */
+        .top-accent {
+            height: 18px;
+            background: linear-gradient(90deg, #ff4e00, #ff8c00);
+            width: 100%;
+        }
+
+        .form-body {
+            padding: 24px 20px;
+            flex-grow: 1;
+        }
+
+        /* সিকিউরিটি স্ট্যাটাস বক্স */
+        .security-badge {
+            background: #eafbf1;
+            border: 1px solid #b7ebd0;
+            color: #12793e;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .security-badge i {
+            font-size: 16px;
+        }
+
+        /* ফিল্ড লেআউট */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .input-label i {
+            color: #ff6a00;
+            font-size: 15px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i.field-icon {
+            position: absolute;
+            left: 16px;
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .input-field, .select-field {
+            width: 100%;
+            padding: 15px 16px 15px 48px;
+            background: #f8fafc;
+            border: 1.5px solid #edf2f7;
+            border-radius: 14px;
+            font-size: 15px;
+            color: #1e293b;
+            outline: none;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .input-field:focus, .select-field:focus {
+            background: #ffffff;
+            border-color: #ff6a00;
+        }
+
+        .select-field {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+
+        .chevron-icon {
+            position: absolute;
+            right: 18px;
+            color: #64748b;
+            pointer-events: none;
+            font-size: 14px;
+        }
+
+        /* কমলা-লাল গ্র্যাডিয়েন্ট সাবমিট বাটন */
+        .submit-btn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 16px;
+            background: linear-gradient(90deg, #ff7a00, #ff3400);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(255, 68, 0, 0.35);
+        }
+
+        .submit-btn i {
+            background: rgba(255, 255, 255, 0.25);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="screen-container">
+    <div class="top-accent"></div>
+
+    <div class="form-body">
+        <!-- সিকিউরিটি ব্যাজ -->
+        <div class="security-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>SSL ২৫৬-বিট এনক্রিপ্টেড · আপনার তথ্য সম্পূর্ণ নিরাপদ</span>
+        </div>
+
+        <form action="success.html" method="GET">
+            <!-- সম্পূর্ণ নাম -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fa-solid fa-user"></i> সম্পূর্ণ নাম
+                </label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user field-icon"></i>
+                    <input type="text" class="input-field" required placeholder="আপনার পূর্ণ নাম লিখুন">
+                </div>
+            </div>
+
+            <!-- মোবাইল নম্বর -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fa-solid fa-mobile-screen"></i> মোবাইল নম্বর
+                </label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-phone field-icon"></i>
+                    <input type="tel" class="input-field" required placeholder="০১XXXXXXXXX">
+                </div>
+            </div>
+
+            <!-- লোনের পরিমাণ -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fa-solid fa-sack-dollar"></i> লোনের পরিমাণ
+                </label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-bangladeshi-taka-sign field-icon"></i>
+                    <select class="select-field" required>
+                        <option value="1000">১০০০ টাকা</option>
+                        <option value="2000">২০০০ টাকা</option>
+                        <option value="3000" selected>৩০০০ টাকা</option>
+                        <option value="5000">৫০০০ টাকা</option>
+                        <option value="10000">১০০০০ টাকা</option>
+                        <option value="20000">২০০০০ টাকা</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down chevron-icon"></i>
+                </div>
+            </div>
+
+            <!-- পরিশোধের মেয়াদ -->
+            <div class="input-group">
+                <label class="input-label">
+                    <i class="fa-solid fa-calendar-days"></i> পরিশোধের মেয়াদ
+                </label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-clock field-icon"></i>
+                    <select class="select-field" required>
+                        <option value="1">১ মাস</option>
+                        <option value="2">২ মাস</option>
+                        <option value="3" selected>৩ মাস</option>
+                        <option value="6">৬ মাস</option>
+                        <option value="12">১২ মাস</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down chevron-icon"></i>
+                </div>
+            </div>
+
+            <!-- পরবর্তী ধাপে যান বাটন -->
+            <button type="submit" class="submit-btn">
+                <span>পরবর্তী ধাপে যান</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
