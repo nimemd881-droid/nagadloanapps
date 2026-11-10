@@ -27,7 +27,6 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.06);
         }
 
-        /* উপরের কমলা-লাল টপ বার */
         .top-accent {
             height: 18px;
             background: linear-gradient(90deg, #ff4e00, #ff8c00);
@@ -39,7 +38,6 @@
             flex-grow: 1;
         }
 
-        /* সিকিউরিটি স্ট্যাটাস বক্স */
         .security-badge {
             background: #eafbf1;
             border: 1px solid #b7ebd0;
@@ -54,14 +52,9 @@
             margin-bottom: 25px;
         }
 
-        .security-badge i {
-            font-size: 16px;
-        }
+        .security-badge i { font-size: 16px; }
 
-        /* ফিল্ড লেআউট */
-        .input-group {
-            margin-bottom: 20px;
-        }
+        .input-group { margin-bottom: 20px; }
 
         .input-label {
             display: flex;
@@ -73,10 +66,7 @@
             margin-bottom: 8px;
         }
 
-        .input-label i {
-            color: #ff6a00;
-            font-size: 15px;
-        }
+        .input-label i { color: #ff6a00; font-size: 15px; }
 
         .input-wrapper {
             position: relative;
@@ -122,7 +112,6 @@
             font-size: 14px;
         }
 
-        /* কমলা-লাল গ্র্যাডিয়েন্ট সাবমিট বাটন */
         .submit-btn {
             width: 100%;
             margin-top: 15px;
@@ -159,43 +148,40 @@
     <div class="top-accent"></div>
 
     <div class="form-body">
-        <!-- সিকিউরিটি ব্যাজ -->
         <div class="security-badge">
             <i class="fa-solid fa-shield-halved"></i>
             <span>SSL ২৫৬-বিট এনক্রিপ্টেড · আপনার তথ্য সম্পূর্ণ নিরাপদ</span>
         </div>
 
-        <form action="success.html" method="GET">
-            <!-- সম্পূর্ণ নাম -->
+        <!-- সরাসরি summary.html পেজে ডাটা পাঠানোর ফর্ম -->
+        <form action="summary.html" method="GET">
             <div class="input-group">
                 <label class="input-label">
                     <i class="fa-solid fa-user"></i> সম্পূর্ণ নাম
                 </label>
                 <div class="input-wrapper">
                     <i class="fa-regular fa-user field-icon"></i>
-                    <input type="text" class="input-field" required placeholder="আপনার পূর্ণ নাম লিখুন">
+                    <input type="text" name="fullname" class="input-field" required placeholder="আপনার পূর্ণ নাম লিখুন">
                 </div>
             </div>
 
-            <!-- মোবাইল নম্বর -->
             <div class="input-group">
                 <label class="input-label">
                     <i class="fa-solid fa-mobile-screen"></i> মোবাইল নম্বর
                 </label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-phone field-icon"></i>
-                    <input type="tel" class="input-field" required placeholder="০১XXXXXXXXX">
+                    <input type="tel" name="phone" class="input-field" required placeholder="০১XXXXXXXXX">
                 </div>
             </div>
 
-            <!-- লোনের পরিমাণ -->
             <div class="input-group">
                 <label class="input-label">
                     <i class="fa-solid fa-sack-dollar"></i> লোনের পরিমাণ
                 </label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-bangladeshi-taka-sign field-icon"></i>
-                    <select class="select-field" required>
+                    <select class="select-field" name="amount" required>
                         <option value="1000">১০০০ টাকা</option>
                         <option value="2000">২০০০ টাকা</option>
                         <option value="3000" selected>৩০০০ টাকা</option>
@@ -207,14 +193,13 @@
                 </div>
             </div>
 
-            <!-- পরিশোধের মেয়াদ -->
             <div class="input-group">
                 <label class="input-label">
                     <i class="fa-solid fa-calendar-days"></i> পরিশোধের মেয়াদ
                 </label>
                 <div class="input-wrapper">
                     <i class="fa-regular fa-clock field-icon"></i>
-                    <select class="select-field" required>
+                    <select class="select-field" name="months" required>
                         <option value="1">১ মাস</option>
                         <option value="2">২ মাস</option>
                         <option value="3" selected>৩ মাস</option>
@@ -225,7 +210,6 @@
                 </div>
             </div>
 
-            <!-- পরবর্তী ধাপে যান বাটন -->
             <button type="submit" class="submit-btn">
                 <span>পরবর্তী ধাপে যান</span>
                 <i class="fa-solid fa-arrow-right"></i>
