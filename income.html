@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আয় ও সক্ষমতা যাচাই - ARROMEX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { 
+            background: #f1f5f9; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #ffffff;
+            padding: 35px 20px 25px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px;
+        }
+
+        .header-title { font-size: 19px; font-weight: bold; margin-bottom: 6px; }
+        .header-sub { font-size: 13px; opacity: 0.9; }
+
+        .content-body { padding: 25px 20px; flex-grow: 1; }
+
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 13px;
+            color: #475569;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group { margin-bottom: 20px; }
+        .input-label { display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 8px; }
+
+        .input-field, .select-field {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            background: #f8fafc;
+        }
+
+        .input-field:focus, .select-field:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+<div class="screen-container">
+    <div class="header-section">
+        <div class="icon-circle">
+            <i class="fa-solid fa-briefcase"></i>
+        </div>
+        <div class="header-title">আয় ও সক্ষমতা যাচাই</div>
+        <div class="header-sub">ঋণ পরিশোধের যোগ্যতা নির্ধারণের জন্য নিচের তথ্য দিন</div>
+    </div>
+
+    <div class="content-body">
+        <div class="info-box">
+            <i class="fa-solid fa-circle-info" style="color: #2563eb;"></i>
+            <span>আপনার প্রদত্ত তথ্যের ভিত্তিতে লোন লিমিট ও কিস্তির যোগ্যতা নির্ধারণ করা হবে।</span>
+        </div>
+
+        <form action="success.html" method="GET">
+            <div class="input-group">
+                <label class="input-label">পেশা বা কর্মসংস্থান</label>
+                <select class="select-field" required>
+                    <option value="" disabled selected>পেশা নির্বাচন করুন</option>
+                    <option value="business">ব্যবসা</option>
+                    <option value="service">চাকরি</option>
+                    <option value="freelancing">ফ্রিল্যান্সিং</option>
+                    <option value="other">অন্যান্য</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">মাসিক গড় আয় (টাকায়)</label>
+                <input type="number" class="input-field" required placeholder="উদা: ২৫০০০">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>যাচাই সম্পন্ন করুন</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
