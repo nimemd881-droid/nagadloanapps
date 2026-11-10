@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>লোনের বিস্তারিত - ARROMEX BOOST ZONE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { 
+            background: #f1f5f9; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* হেডার ব্যানার */
+        .header-section {
+            background: linear-gradient(135deg, #ff6a00, #ee0979);
+            color: #ffffff;
+            padding: 30px 20px 25px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .header-title { font-size: 20px; font-weight: bold; margin-bottom: 6px; }
+        .header-sub { font-size: 13px; opacity: 0.9; }
+
+        .content-body { padding: 20px; flex-grow: 1; }
+
+        /* সারসংক্ষেপ কার্ড */
+        .summary-card {
+            background: linear-gradient(90deg, #ff7a00, #ff3400);
+            border-radius: 14px;
+            padding: 16px 12px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 68, 0, 0.25);
+            margin-bottom: 25px;
+        }
+
+        .summary-item { flex: 1; border-right: 1px solid rgba(255,255,255,0.25); }
+        .summary-item:last-child { border-right: none; }
+        .summary-label { font-size: 11px; opacity: 0.9; margin-bottom: 4px; }
+        .summary-value { font-size: 16px; font-weight: bold; }
+
+        /* মাসিক কিস্তি তালিকা */
+        .schedule-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            margin-bottom: 25px;
+        }
+
+        .schedule-header {
+            padding: 12px 16px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 13px;
+            font-weight: bold;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .schedule-table th {
+            padding: 10px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+
+        .badge-month {
+            background: #e2e8f0;
+            color: #475569;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .amount-cell { color: #e11d48; font-weight: bold; }
+
+        /* কনফার্ম বাটন */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #ff7a00, #ff3400);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 68, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="screen-container">
+    <div class="header-section">
+        <div class="header-title">লোনের বিস্তারিত</div>
+        <div class="header-sub">তথ্যগুলো যাচাই করুন — সব ঠিক থাকলে এগিয়ে যান</div>
+    </div>
+
+    <div class="content-body">
+        <!-- সারসংক্ষেপ কার্ড -->
+        <div class="summary-card">
+            <div class="summary-item">
+                <div class="summary-label">লোন পরিমাণ</div>
+                <div class="summary-value" id="principalDisplay">৳০</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">মোট মুনাফা (৮%)</div>
+                <div class="summary-value" id="interestDisplay">৳০</div>
+            </div>
+            <div class="summary-item">
+                <div class="summary-label">সর্বমোট দেয়</div>
+                <div class="summary-value" id="totalPayableDisplay">৳০</div>
+            </div>
+        </div>
+
+        <!-- পরিশোধ তালিকা -->
+        <div class="schedule-card">
+            <div class="schedule-header">
+                <i class="fa-solid fa-calendar-days" style="color: #ff6a00;"></i>
+                <span>মাসিক পরিশোধ তালিকা</span>
+            </div>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>মাস</th>
+                        <th>তারিখ</th>
+                        <th>পরিমাণ</th>
+                    </tr>
+                </thead>
+                <tbody id="repaymentTableBody">
+                    <!-- জাভাস্ক্রিপ্ট দিয়ে তৈরি হবে -->
+                </tbody>
+            </table>
+        </div>
+
+        <a href="success.html" class="submit-btn">
+            <span>সম্মতি দিন ও এগিয়ে যান</span>
+            <i class="fa-solid fa-check"></i>
+        </a>
+    </div>
+</div>
+
+<script>
+    // ইউআরএল থেকে লোন ও মেয়াদের ডাটা নেওয়া (যেমন: summary.html?amount=10000&months=3)
+    const urlParams = new URLSearchParams(window.location.search);
+    const principal = parseFloat(urlParams.get('amount')) || 10000;
+    const months = parseInt(urlParams.get('months')) || 3;
+    const annualRate = 0.08; // ৮% বার্ষিক সুদের হার
+
+    // সাধারণ মোট সুদ হিসাব: (মূলধন × বার্ষিক হার × (মাস / ১২))
+    const totalInterest = Math.round(principal * annualRate * (months / 12));
+    const totalPayable = principal + totalInterest;
+    const monthlyPayment = Math.round(totalPayable / months);
+
+    // ইন্টারফেসে মান দেখানো
+    document.getElementById('principalDisplay').innerText = '৳' + principal.toLocaleString('bn-BD');
+    document.getElementById('interestDisplay').innerText = '৳' + totalInterest.toLocaleString('bn-BD');
+    document.getElementById('totalPayableDisplay').innerText = '৳' + totalPayable.toLocaleString('bn-BD');
+
+    // তারিখ ও কিস্তির রো জেনারেট করা
+    const tableBody = document.getElementById('repaymentTableBody');
+    const currentDate = new Date();
+
+    for (let i = 1; i <= months; i++) {
+        let payDate = new Date(currentDate);
+        payDate.setMonth(currentDate.getMonth() + i);
+
+        let options = { day: 'numeric', month: 'short', year: 'numeric' };
+        let formattedDate = payDate.toLocaleDateString('en-GB', options);
+
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><span class="badge-month">${i}</span></td>
+            <td>${formattedDate}</td>
+            <td class="amount-cell">৳${monthlyPayment.toLocaleString('bn-BD')}</td>
+        `;
+        tableBody.appendChild(tr);
+    }
+</script>
+
+</body>
+</html>
