@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মোবাইল যাচাইকরণ - ARROMEX BOOST ZONE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { 
+            background: #f1f5f9; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #ffffff;
+            padding: 35px 20px 25px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px;
+        }
+
+        .header-title { font-size: 19px; font-weight: bold; margin-bottom: 6px; }
+        .header-sub { font-size: 13px; opacity: 0.9; line-height: 1.4; }
+
+        .content-body { padding: 25px 20px; flex-grow: 1; }
+
+        /* নোটিশ বক্স */
+        .info-card {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+        .info-item:last-child { margin-bottom: 0; }
+
+        .timer-badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        /* ওটিপি ইনপুট গ্রুপ */
+        .otp-group {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0 25px;
+        }
+
+        .otp-box {
+            width: 48px;
+            height: 52px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            background: #f8fafc;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .otp-box:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .resend-text {
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .resend-link {
+            color: #2563eb;
+            font-weight: bold;
+            text-decoration: none;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .resend-link.active {
+            pointer-events: auto;
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        /* সাবমিট বাটন */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+<div class="screen-container">
+    <div class="header-section">
+        <div class="icon-circle">
+            <i class="fa-solid fa-comment-sms"></i>
+        </div>
+        <div class="header-title">মোবাইল নম্বর যাচাইকরণ</div>
+        <div class="header-sub">আপনার প্রদত্ত মোবাইল নম্বরে একটি যাচাইকরণ কোড (OTP) পাঠানো হয়েছে</div>
+    </div>
+
+    <div class="content-body">
+        <div class="info-card">
+            <div class="info-item">
+                <i class="fa-solid fa-bell"></i>
+                <span>নিরাপত্তা নিশ্চিত করতে ওটিপি কোডটি প্রবেশ করান।</span>
+            </div>
+            <div class="info-item">
+                <i class="fa-regular fa-clock"></i>
+                <span>কোডের মেয়াদ: <span class="timer-badge" id="countdown">২৫ সেকেন্ড</span></span>
+            </div>
+        </div>
+
+        <form action="success.html" method="GET" id="otpForm">
+            <!-- ৬-সংখ্যার ওটিপি ইনপুট -->
+            <div class="otp-group">
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" required autofocus>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" required>
+                <input type="text" class="otp-box" maxlength="1" pattern="[0-9]" required>
+            </div>
+
+            <input type="hidden" name="otp_code" id="finalOtp">
+
+            <div class="resend-text">
+                কোড পাননি? <a href="#" class="resend-link" id="resendBtn" onclick="resetTimer()">পুনরায় কোড পাঠান</a>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span>যাচাই সম্পন্ন করুন</span>
+                <i class="fa-solid fa-shield-halved"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // অটো ফোকাস এবং কোড কালেকশন
+    const boxes = document.querySelectorAll('.otp-box');
+    const finalOtpInput = document.getElementById('finalOtp');
+
+    boxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && index < boxes.length - 1) {
+                boxes[index + 1].focus();
+            }
+            let fullCode = '';
+            boxes.forEach(b => fullCode += b.value);
+            finalOtpInput.value = fullCode;
+        });
+
+        box.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                boxes[index - 1].focus();
+            }
+        });
+    });
+
+    // ২৫ সেকেন্ডের কাউন্টডাউন টাইমার
+    let timeLeft = 25;
+    const timerElem = document.getElementById('countdown');
+    const resendBtn = document.getElementById('resendBtn');
+    let timerInterval;
+
+    function startTimer() {
+        timeLeft = 25;
+        resendBtn.classList.remove('active');
+        timerElem.innerText = timeLeft + ' সেকেন্ড';
+
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+                timerElem.innerText = timeLeft + ' সেকেন্ড';
+            } else {
+                clearInterval(timerInterval);
+                timerElem.innerText = 'সময় শেষ';
+                resendBtn.classList.add('active');
+            }
+        }, 1000);
+    }
+
+    function resetTimer() {
+        startTimer();
+        alert('আপনার নম্বরে নতুন ওটিপি পাঠানো হয়েছে।');
+    }
+
+    startTimer();
+</script>
+
+</body>
+</html>
